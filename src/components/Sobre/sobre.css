@@ -1,0 +1,16 @@
+.lista__menu{
+  display: flex;
+  list-style: none;
+  gap: 10px;
+}
+
+.lista__menu li a{
+  text-decoration: none;
+  padding: 10px;
+  cursor: pointer;
+  color: white;
+}
+
+.lista__menu li a:active{
+  color: #EB984C;
+}
