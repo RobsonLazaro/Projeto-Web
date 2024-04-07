@@ -27,7 +27,7 @@ export default function MenuSection({ text, tipoProduto }) {
           <MenuItem key={item.id} title={item.nome} description={item.descricao} price={item.preco} />
         ))
       ) : (
-        <p>Nenhum item encontrado</p>
+        <p>Produto da categoria <b>{tipoProduto}</b> não encontrado!</p>
       )}
     </section>
   )
