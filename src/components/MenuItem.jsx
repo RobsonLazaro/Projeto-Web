@@ -4,7 +4,7 @@ import minusPng from '../assets/minus.png'
 
 export default function MenuItem({ id, title, description, price }) {
   return (
-    <div className='flex mt-4 ml-7'>
+    <div className='flex gap-4 mt-4 ml-7'>
       <div className='flex flex-col flex-1'>
         <h3 className='mb-1 text-xl font-semibold'>{title}</h3>
         <span>{description}</span>
