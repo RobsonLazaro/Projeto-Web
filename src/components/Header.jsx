@@ -2,15 +2,15 @@ import React from 'react'
 import LogoSvg from '../assets/LogoSvg'
 import HeaderLink from './HeaderLink'
 
-export default function Header() {
+export default function Header({ onLoginClick }) {
   return (
-    <header className='flex items-center justify-around p-4 header bg-darker-gray'>
+    <header className='fixed top-0 left-0 right-0 flex items-center justify-around px-4 py-7 header bg-darker-gray'>
       <LogoSvg />
 
       <nav className='flex justify-between gap-12 text-white'>
         <HeaderLink text="sobre" />
         <HeaderLink text="contato" />
-        <HeaderLink text="conta" />
+        <HeaderLink text="conta" onClickAct={onLoginClick} />
       </nav>
     </header>
   )

@@ -21,14 +21,16 @@ export default function MenuSection({ text, tipoProduto }) {
 
   return (
     <section className='mt-3'>
-      <h3 className='text-2xl text-orange-400'>{text}</h3>
-      {Array.isArray(menuItems) && menuItems.length > 0 ? (
-        menuItems.map(item => (
-          <MenuItem key={item.id} title={item.nome} description={item.descricao} price={item.preco} />
-        ))
-      ) : (
-        <p>Produto da categoria <b>{tipoProduto}</b> não encontrado!</p>
-      )}
+      <div className='flex flex-col gap-2'>
+        <h3 className='text-4xl text-orange-400'>{text}</h3>
+        {Array.isArray(menuItems) && menuItems.length > 0 ? (
+          menuItems.map(item => (
+            <MenuItem key={item.id} title={item.nome} description={item.descricao} price={item.preco} />
+          ))
+        ) : (
+          <p>Produto da categoria <b>{tipoProduto}</b> não encontrado!</p>
+        )}
+      </div>
     </section>
   )
 }

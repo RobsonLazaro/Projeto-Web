@@ -10,6 +10,9 @@ export default {
         'darker-gray': '#121212',
       },
     },
+    fontFamily: {
+      sans: ['Josefin Sans', 'sans-serif'],
+    }
   },
   plugins: [],
 }
