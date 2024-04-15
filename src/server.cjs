@@ -34,9 +34,23 @@ const pool = new Pool({
 // Rota para buscar itens do menu
 app.get('/menu/:tipoProduto', async (req, res) => {
   try {
-    const { tipoProduto } = req.params; // Extrai o valor do parâmetro da rota
+    const { tipoProduto } = req.params;
     const client = await pool.connect();
     const result = await client.query("SELECT * FROM rapid_feast.produtos WHERE tipo_produto = $1;", [tipoProduto]);
+    client.release();
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao buscar itens do menu:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Rota para buscar item por id
+app.get('/produto/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const client = await pool.connect();
+    const result = await client.query("SELECT * FROM rapid_feast.produtos WHERE id = $1;", [id]);
     client.release();
     res.json(result.rows);
   } catch (error) {

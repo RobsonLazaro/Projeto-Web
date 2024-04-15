@@ -5,18 +5,26 @@ import Hero from './components/Hero'
 import Menu from './components/Menu'
 import Footer from './components/Footer'
 import LoginForm from './components/Login';
+import Cart from './components/Cart';
 
 function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
-  const handleLoginClick = () => {
-    setIsLoginOpen(true);
+  const [showCart, setShowCart] = useState(false);
+
+  const toggleCart = () => {
+    setShowCart(!showCart);
+  };
+
+  const toggleLogin = () => {
+    setIsLoginOpen(!isLoginOpen);
   };
   return (
     <>
-      <Header onLoginClick={handleLoginClick} />
+      <Header onLoginClick={toggleLogin} />
       {isLoginOpen && <LoginForm />}
       <Hero />
-      <Menu />
+      <Menu onFinishClick={toggleCart} />
+      {showCart && <Cart />}
       <Footer />
     </>
   )

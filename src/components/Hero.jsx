@@ -18,9 +18,11 @@ export default function Hero() {
         <span className='text-5xl text-right text-white'>
           <span>sabores rápidos<br />satisfação instantânea</span>
         </span>
-        <span className='pt-2 text-4xl text-right text-orange-400 cursor-pointer hover:underline' onClick={scrollToOrder}>
-          peça já
-        </span>
+        <div className='flex justify-end'>
+          <span className='pt-2 text-4xl text-right text-orange-400 cursor-pointer hover:underline' onClick={scrollToOrder}>
+            peça já
+          </span>
+        </div>
       </div>
       <div className='flex items-center align-middle'>
         {/* <img src={yellowBlur} alt="" /> */}
