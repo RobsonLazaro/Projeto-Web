@@ -1,4 +1,8 @@
 # React + Vite
 
 How to run:
-> npm run dev
+
+Start server: node .\src\server.cjs
+
+
+Run app: npm run dev
