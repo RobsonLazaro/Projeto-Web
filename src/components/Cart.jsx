@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CartItem from './CartItem';
 
-function Cart() {
+function Cart({onClose}) {
   const [removedItems, setRemovedItems] = useState({});
 
   const handleIsRemoved = (index) => {
@@ -17,7 +17,7 @@ function Cart() {
       <div className='bg-white flex flex-col text-black max-w-[60rem] p-6 rounded-lg w-[60rem]'>
         <div className='flex justify-between mb-7'>
           <h1 className='text-3xl font-semibold'>Carrinho</h1>
-          <button className='px-2 text-xl font-light text-black rounded-md hover:bg-orange-200'>Fechar</button>
+          <button className='px-2 text-xl font-light text-black rounded-md hover:bg-orange-200' onClick={onClose}>Fechar</button>
         </div>
         <div className='flex flex-col gap-3'>
           <CartItem index={1} isRemoved={removedItems[1]} handleIsRemoved={handleIsRemoved} />

@@ -21,6 +21,8 @@ function App() {
   const toggleLogin = () => {
     setIsLoginOpen(!isLoginOpen);
     setIsSignUpOpen(false);
+    !isLoginOpen ? document.body.style.overflow = 'hidden' : document.body.style.overflow = ''; /* [2] */
+    
   };
   const toggleSignUp = () => {
     setIsSignUpOpen(!isSignUpOpen);
@@ -33,7 +35,7 @@ function App() {
       {isSignUpOpen && <SignUpForm />}
       <Hero />
       <Menu onFinishClick={toggleCart} />
-      {showCart && <Cart />}
+      {showCart && <Cart  onClose={toggleCart}/>}
       <Footer />
     </>
   )

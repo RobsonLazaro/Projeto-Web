@@ -1,6 +1,6 @@
 export default function ModalButton({ text, href }) {
     return (
-        <button href={href}>{text}</button>
+        <button className="bg-green-800 text-white" href={href}>{text}</button>
     )
 }
 

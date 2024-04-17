@@ -8,6 +8,7 @@ export default {
     extend: {
       colors: {
         'darker-gray': '#121212',
+        'cor-fundo-login':'#222'
       },
     },
     fontFamily: {

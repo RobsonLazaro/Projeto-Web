@@ -13,7 +13,7 @@ export default function LoginForm({ onClose }) {
   };
 
   return (
-    <div className="fixed y-10 z-10 p-3 bg-stone-800 flex flex-col modal top-[15%] left-[10%] right-[10%] bottom-[15%] justify-center">
+    <div className="fixed y-10 z-10 p-3 bg-cor-fundo-login flex flex-col modal top-[15%] left-[10%] right-[10%] bottom-[15%] justify-center rounded-xl">
       <div className='grid grid-flow-col grid-cols-2'>
         <div className='flex items-center align-middle justify-center'>
             <img src={burgPng} alt="Imagem do burg" className='' />
