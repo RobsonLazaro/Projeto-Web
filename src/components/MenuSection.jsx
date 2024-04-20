@@ -25,12 +25,13 @@ export default function MenuSection({ text, tipoProduto }) {
         <h3 className='text-4xl text-orange-400'>{text}</h3>
         {Array.isArray(menuItems) && menuItems.length > 0 ? (
           menuItems.map(item => (
-            <MenuItem key={item.id} title={item.nome} description={item.descricao} price={item.preco} />
+            <MenuItem key={item.id} id={item.id} id_produto={item.id} title={item.nome} description={item.descricao} price={item.preco} />
           ))
         ) : (
           <p>Produto da categoria <b>{tipoProduto}</b> não encontrado!</p>
         )}
       </div>
     </section>
-  )
+  );
+
 }
