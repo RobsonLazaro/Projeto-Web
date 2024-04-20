@@ -10,8 +10,8 @@ export default function Header({ onLoginClick, onSignUpClick }) {
       <nav className='flex justify-between gap-12 text-white'>
         <HeaderLink text="sobre" />
         <HeaderLink text="contato" />
-        <HeaderLink text="Entrar" onClickAct={onLoginClick} />
-        <HeaderLink text="Cadastrar" onClickAct={onSignUpClick} />
+        <HeaderLink text="entrar" onClickAct={onLoginClick} />
+        <HeaderLink text="cadastrar" onClickAct={onSignUpClick} />
       </nav>
     </header>
   )
