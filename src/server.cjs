@@ -138,6 +138,41 @@ app.get('/cart/:id_usuario', async (req, res) => {
   }
 });
 
+//Atualizar pedido para a carrinho
+app.put('/cart/:id_usuario', async (req, res) => {
+  const { id_usuario } = req.params;
+  const query = "UPDATE RAPID_FEAST.PEDIDO SET STATUS = 'A' WHERE STATUS = 'P' AND USUARIO_ID = $1;"
+
+  try {
+    const client = await pool.connect();
+    await client.query(query, [id_usuario]);
+    client.release();
+    res.status(200).json({ message: 'Pedido finalizado com sucesso!' });
+  } catch (error) {
+    console.error('Erro ao finalizar o pedido:', error);
+    res.status(500).json({ error: 'Erro ao finalizar o pedido.' });
+  }
+});
+
+app.delete('/cart/produto', async (req, res) => {
+  const { id_pedido, id_produto } = req.body;
+
+  // Construir a consulta SQL para excluir o produto do carrinho
+  const query = "DELETE FROM RAPID_FEAST.ITEM_PEDIDO WHERE PEDIDO_ID = $1 AND PRODUTO_ID = $2;";
+
+  try {
+    // Executar a consulta SQL
+    const client = await pool.connect();
+    await client.query(query, [id_pedido, id_produto]);
+    client.release();
+    res.status(200).json({ message: 'Produto removido do carrinho com sucesso.' });
+  } catch (error) {
+    console.error('Erro ao remover o produto do carrinho:', error);
+    res.status(500).json({ error: 'Erro ao remover o produto do carrinho.' });
+  }
+});
+
+
 
 
 // Iniciar o servidor
