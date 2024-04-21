@@ -14,7 +14,6 @@ function App() {
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSignUpOpen, setIsSignUpOpen] = useState(false);
   const [showCart, setShowCart] = useState(false);
-
   const toggleCart = () => {
     setShowCart(!showCart);
   };
@@ -37,7 +36,7 @@ function App() {
       {isSignUpOpen && <SignUpForm />}
       <Hero />
       <Menu onFinishClick={toggleCart} />
-      {showCart && <Cart onClose={toggleCart} />}
+      {showCart && <Cart onClose={toggleCart} id_usuario={1} />}
       <Footer />
       <ToastContainer />
     </>

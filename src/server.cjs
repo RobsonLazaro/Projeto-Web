@@ -59,6 +59,10 @@ app.get('/produto/:id', async (req, res) => {
   }
 });
 
+
+// ENDPOINTS DO CARRINHO
+
+//Adicionar item ao carrinho
 app.post('/addcart/:id_usuario', async (req, res) => {
   const { id_usuario } = req.params;
   const { produtoId, quantidade } = req.body;
@@ -105,6 +109,34 @@ app.post('/addcart/:id_usuario', async (req, res) => {
   }
 });
 
+//Buscar itens do carrinho do usuário
+app.get('/cart/:id_usuario', async (req, res) => {
+  try {
+    const { id_usuario } = req.params;
+    const query = "SELECT  IP.PEDIDO_ID,                              " +
+      "        IP.PRODUTO_ID,                             " +
+      "        PROD.NOME,                                 " +
+      "        IP.QTDE,                                   " +
+      "        PROD.PRECO,                                " +
+      "        (IP.QTDE * PROD.PRECO)  ITEM_PEDIDO_TOTAL  " +
+      "  FROM RAPID_FEAST.ITEM_PEDIDO IP                  " +
+      "  INNER JOIN RAPID_FEAST.PEDIDO P                  " +
+      "          ON P.ID = IP.PEDIDO_ID                   " +
+      "  LEFT JOIN RAPID_FEAST.PRODUTOS PROD              " +
+      "          ON IP.PRODUTO_ID = PROD.ID               " +
+      "  WHERE P.STATUS = 'P'                             " +
+      "    AND P.USUARIO_ID = $1                           " +
+      "    ORDER BY PROD.NOME ASC;                        "
+
+    const client = await pool.connect();
+    const result = await client.query(query, [id_usuario]);
+    client.release();
+    res.json(result.rows);
+  } catch (error) {
+    console.error('Erro ao buscar itens do menu:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
 
 
 

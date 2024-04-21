@@ -24,8 +24,11 @@ export default function MenuSection({ text, tipoProduto }) {
       <div className='flex flex-col gap-2'>
         <h3 className='text-4xl text-orange-400'>{text}</h3>
         {Array.isArray(menuItems) && menuItems.length > 0 ? (
-          menuItems.map(item => (
-            <MenuItem key={item.id} id={item.id} id_produto={item.id} title={item.nome} description={item.descricao} price={item.preco} />
+          menuItems.map((item, index) => (
+            <React.Fragment key={item.id}>
+              <MenuItem key={item.id} id={item.id} id_produto={item.id} title={item.nome} description={item.descricao} price={item.preco} />
+              {index !== menuItems.length - 1 && <hr className="mx-5 my-1 border-gray-500 border-dashed" />}
+            </React.Fragment>
           ))
         ) : (
           <p>Produto da categoria <b>{tipoProduto}</b> não encontrado!</p>

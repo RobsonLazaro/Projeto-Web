@@ -22,9 +22,8 @@ const MenuItem = ({ id_produto, title, description, price }) => {
 
   const addCart = () => {
     if (quantity > 0) {
-      // Construa o objeto de dados a ser enviado no corpo da requisição
       const data = {
-        produtoId: id_produto, // Usar id_produto em vez de key
+        produtoId: id_produto,
         quantidade: quantity
       };
 
@@ -35,7 +34,7 @@ const MenuItem = ({ id_produto, title, description, price }) => {
           toast.success(title + ' adicionado ao carrinho.', {
             position: "bottom-right",
             theme: "dark",
-            autoClose: 2000,
+            autoClose: 3000,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true
@@ -43,11 +42,10 @@ const MenuItem = ({ id_produto, title, description, price }) => {
         })
         .catch(error => {
           console.error(error);
-          // Trate erros aqui
           toast.error('Erro ao adicionar produto ao carrinho!', {
             position: "bottom-right",
             theme: "dark",
-            autoClose: 2000,
+            autoClose: 3000,
             closeOnClick: true,
             pauseOnHover: true,
             draggable: true
@@ -59,7 +57,7 @@ const MenuItem = ({ id_produto, title, description, price }) => {
 
 
   return (
-    <div className='flex gap-4 mt-4 ml-5'>
+    <div className='flex gap-4 mt-4'>
       <div className='flex flex-col flex-1'>
         <h3 className='mb-1 text-2xl font-semibold'>{title}</h3>
         <span className='text-2xl font-light max-w-[50rem]'>{description}</span>
@@ -75,7 +73,7 @@ const MenuItem = ({ id_produto, title, description, price }) => {
             <img src={plusPng} alt="Ícone de adicionar" />
           </button>
         </div>
-        <button className='px-1 font-light text-white bg-green-800 hover:opacity-80' onClick={addCart}>Adicionar</button>
+        <button className='px-1 font-light text-white bg-green-900 hover:opacity-80' onClick={addCart}>Adicionar</button>
       </div>
     </div>
   );
