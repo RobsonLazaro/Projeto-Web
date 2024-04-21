@@ -23,10 +23,11 @@ function App() {
     setIsSignUpOpen(false);
     !isLoginOpen ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = '');
   };
-
+  
   const toggleSignUp = () => {
     setIsSignUpOpen(!isSignUpOpen);
     setIsLoginOpen(false);
+    !isSignUpOpen ? (document.body.style.overflow = 'hidden') : (document.body.style.overflow = '');
   };
 
   return (

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import InputBox from './InputBox'
-import ModalButton from './ModalButton'
+// import ModalButton from './ModalButton'
+import burgPng from '../assets/burg.png';
 
 export default function SignUpForm({ onClose }) {
   const [username, setUsername] = useState('');
@@ -15,21 +16,26 @@ export default function SignUpForm({ onClose }) {
   };
 
   return (
-    <div className="fixed z-10 p-3 bg-gray-500 modal top-3 left-[50%] translate-x-[-50%]" style={style.Modal}>
-      <span>Cadastro</span>
-      <form className='flex top-10 flex-col justify-center'>
+    <div className="fixed y-10 z-10 p-3 bg-cor-fundo-login flex flex-col modal top-[15%] left-[10%] right-[10%] bottom-[15%] justify-center rounded-xl" >
+      <div className='grid grid-flow-col grid-cols-2'>
+        <div className='flex items-center align-middle justify-center'>
+          <img src={burgPng} alt="Imagem do burg" className='' />
+        </div>
+        <form className="form flex justify-center items-center px-10 max-w-[40rem]">
+          <div className='flex flex-grow flex-col gap-4'>
+            <InputBox Fieldname={"Email:"} Id={"email"} Type={"email"}/>
+            <InputBox Fieldname={"Senha:"} Id={"password"} Type={"password"}/>
+            <InputBox Fieldname={"Repita sua senha:"} Id={"password"} Type={"password"}/>
+            <InputBox Fieldname={"CEP:"} Id={"cep"} Type={"cep"}/>
 
-        <InputBox placeholder={'Email'} />
-        <InputBox placeholder={'Senha'} />
-        <InputBox placeholder={'CEP'} />
-        <ModalButton text={'asdasd'} />
+            <div className="actions text-center">
+              <button type="submit" className='text-white	bg-green-800 py-2 px-8 rounded hover:bg-green-700 text-xl'>Cadastrar</button>
+            </div>
+          </div>
+        </form>
+      </div>
 
-      </form>
     </div>
   );
 }
-const style = {
-  Modal: {
-    borderRadius: 10
-  }
-}
+

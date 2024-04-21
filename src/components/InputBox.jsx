@@ -1,6 +1,9 @@
-export default function InputBox({ placeholder }) {
+export default function InputBox({ Fieldname: FieldName, Type, Id}) {
     return (
-        <input id="fname" name="fname" placeholder={placeholder} style={styles.inputBoxStyle} />
+        <div className="field flex flex-col">
+            <label htmlFor={FieldName} className='block text-xl text-white'>{FieldName}</label>
+            <input className='border-1 py-1 pl-3' type={Type} name={FieldName} id={Id} required />
+        </div>
     )
 }
 
