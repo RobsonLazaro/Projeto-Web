@@ -54,7 +54,7 @@ function Cart({ onClose, id_usuario }) {
           )}
           <p className='text-xl font-semibold text-right'>
             Total: R$ {
-              cartItems.reduce((total, item) => total + parseFloat(item.item_pedido_total), 0)
+              cartItems.reduce((total, item) => total + parseFloat(item.item_pedido_total), 0).toFixed(2)
             }
           </p>
           <button>Finalizar pedido</button>
