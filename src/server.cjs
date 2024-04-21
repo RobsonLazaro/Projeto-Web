@@ -161,7 +161,6 @@ app.delete('/cart/produto', async (req, res) => {
   const query = "DELETE FROM RAPID_FEAST.ITEM_PEDIDO WHERE PEDIDO_ID = $1 AND PRODUTO_ID = $2;";
 
   try {
-    // Executar a consulta SQL
     const client = await pool.connect();
     await client.query(query, [id_pedido, id_produto]);
     client.release();
