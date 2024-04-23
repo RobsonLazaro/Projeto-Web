@@ -60,13 +60,13 @@ function Cart({ onClose, id_usuario }) {
 
   return (
     <section className='fixed top-0 bottom-0 left-0 right-0 flex items-center justify-center mx-6 bg-black bg-opacity-50'>
-      <div className='bg-white flex flex-col text-black max-w-[60rem] p-6 rounded-lg w-[60rem]'>
+      <div className='bg-cor-fundo-login flex flex-col text-black max-w-[60rem] p-6 rounded-lg w-[60rem] text-white'>
         <div className='flex justify-between mb-7'>
-          <h1 className='text-3xl font-semibold'>Carrinho</h1>
+          <h1 className='text-3xl font-semibold text-orange-400'>Carrinho</h1>
 
         </div>
         <div className='flex flex-col gap-5'>
-          <div className='grid gap-1 text-xl font-bold grid-cols-52221'>
+          <div className='grid gap-1 text-xl font-bold  grid-cols-52221'>
             <h3>Produto</h3>
             <h3 className='text-center'>Quantidade</h3>
             <h3 className='text-center'>Preço</h3>
@@ -98,8 +98,8 @@ function Cart({ onClose, id_usuario }) {
             }
           </p>
           <div className='flex justify-end gap-2'>
-            <button className='px-2 text-xl font-light text-black hover:bg-orange-200' onClick={onClose}>Fechar</button>
-            <button className='px-2 py-1 text-white bg-green-700 hover:opacity-80' onClick={finishOrder}>Finalizar pedido</button>
+            <button className='px-2 text-xl text-white text-black hover:text-orange-400' onClick={onClose}>Fechar</button>
+            <button className='px-2 py-2 text-white font-bold bg-green-700 hover:opacity-80' onClick={finishOrder}>Finalizar pedido</button>
           </div>
         </div>
       </div>

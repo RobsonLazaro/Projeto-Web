@@ -57,7 +57,7 @@ const MenuItem = ({ id_produto, title, description, price }) => {
 
 
   return (
-    <div className='flex gap-4 mt-4'>
+    <div className='flex gap-4 mt-4 bg-darker-gray'>
       <div className='flex flex-col flex-1'>
         <h3 className='mb-1 text-2xl font-semibold'>{title}</h3>
         <span className='text-2xl font-light max-w-[50rem]'>{description}</span>
