@@ -11,7 +11,6 @@ export default function Header({ onLoginClick, onSignUpClick }) {
         <HeaderLink text="sobre" />
         <HeaderLink text="contato" />
         <HeaderLink text="entrar" onClickAct={onLoginClick} />
-        <HeaderLink text="cadastrar" onClickAct={onSignUpClick} />
       </nav>
     </header>
   )

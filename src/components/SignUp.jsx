@@ -16,7 +16,7 @@ export default function SignUpForm({ onClose }) {
   };
 
   return (
-    <div className="fixed y-10 z-10 p-3 bg-cor-fundo-login flex flex-col modal top-[15%] left-[10%] right-[10%] bottom-[15%] justify-center rounded-xl" >
+    <div className="fixed y-10 z-10 p-3 bg-cor-fundo-login flex flex-col modal top-[12%] left-[0%] right-[0%] bottom-[0%] justify-center rounded-xl" >
       <div className='grid grid-flow-col grid-cols-2'>
         <div className='flex items-center align-middle justify-center'>
           <img src={burgPng} alt="Imagem do burg" className='' />
@@ -26,10 +26,10 @@ export default function SignUpForm({ onClose }) {
             <InputBox Fieldname={"Email:"} Id={"email"} Type={"email"}/>
             <InputBox Fieldname={"Senha:"} Id={"password"} Type={"password"}/>
             <InputBox Fieldname={"Repita sua senha:"} Id={"password"} Type={"password"}/>
-            <InputBox Fieldname={"CEP:"} Id={"cep"} Type={"cep"}/>
+            <InputBox Fieldname={"CEP:"} Id={"cep"} Type={"number"}/>
 
             <div className="actions text-center">
-              <button type="submit" className='text-white	bg-green-800 py-2 px-8 rounded hover:bg-green-700 text-xl'>Cadastrar</button>
+              <button type="submit" className='text-white	bg-green-800  py-3 px-8 mt-5  rounded hover:bg-green-700 text-xl'>Cadastrar</button>
             </div>
           </div>
         </form>
