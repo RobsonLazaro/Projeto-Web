@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const app = express();
 
-const PORT = process.env.DB_PORT;
+const PORT = process.env.NODE_ENV === 'test' ? 3001 : process.env.DB_PORT;
 const HOST = process.env.DB_HOST;
 const USER = process.env.DB_USER;
 const PASSWORD = process.env.DB_PASSWORD;
@@ -131,7 +131,7 @@ app.get('/cart/:id_usuario', async (req, res) => {
     const client = await pool.connect();
     const result = await client.query(query, [id_usuario]);
     client.release();
-    res.json(result.rows);
+    res.status(200).json(result.rows);
   } catch (error) {
     console.error('Erro ao buscar itens do menu:', error);
     res.status(500).json({ error: error.message });
@@ -175,6 +175,19 @@ app.delete('/cart/produto', async (req, res) => {
 
 
 // Iniciar o servidor
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Servidor iniciado na porta ${PORT}`);
 });
+
+const gracefulShutdown = () => {
+  console.log('Fechando o servidor Express...');
+  server.close(() => {
+    console.log('Servidor Express encerrado com sucesso');
+    process.exit(0);
+  });
+};
+
+process.on('SIGINT', gracefulShutdown);
+process.on('SIGTERM', gracefulShutdown);
+
+module.exports = server;
