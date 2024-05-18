@@ -3,28 +3,32 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CartItem from './CartItem';
 import axios from 'axios';
+import { useGlobalContext } from './GlobalContext';
 
-function Cart({ onClose, id_usuario }) {
+function Cart({ onClose }) {
 
   const [cartItems, setCartItems] = useState([]);
-
+  const { userInfo } = useGlobalContext();
+  // const id_usuario = userinfo.sub;
   useEffect(() => {
-    const fetchCartItems = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/cart/${id_usuario}`);
-        setCartItems(response.data);
-        console.log(response.data);
-      } catch (error) {
-        console.error('Erro ao buscar itens do carrinho:', error);
-      }
-    };
-
-    fetchCartItems();
-  }, [id_usuario]);
+    console.log('Cart: ' + userInfo)
+    if (userInfo) {
+      const fetchCartItems = async () => {
+        try {
+          const response = await axios.get(`http://localhost:3000/cart/${userInfo.sub}`);
+          setCartItems(response.data);
+          console.log(response.data);
+        } catch (error) {
+          console.error('Erro ao buscar itens do carrinho:', error);
+        }
+      };
+      fetchCartItems();
+    }
+  }, [userInfo]);
 
   const updateCart = async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/cart/${id_usuario}`);
+      const response = await axios.get(`http://localhost:3000/cart/${userInfo.sub}`);
       setCartItems(response.data);
     } catch (error) {
       console.error('Erro ao atualizar o carrinho:', error);
@@ -33,7 +37,7 @@ function Cart({ onClose, id_usuario }) {
 
   const finishOrder = async () => {
     try {
-      await axios.put(`http://localhost:3000/cart/${id_usuario}`, { status: 'A' });
+      await axios.put(`http://localhost:3000/cart/${userInfo.sub}`, { status: 'A' });
 
       toast.success(' Pedido efetuado com sucesso!.', {
         position: "bottom-right",
@@ -66,7 +70,7 @@ function Cart({ onClose, id_usuario }) {
 
         </div>
         <div className='flex flex-col gap-5'>
-          <div className='grid gap-1 text-xl font-bold  grid-cols-52221'>
+          <div className='grid gap-1 text-xl font-bold grid-cols-52221'>
             <h3>Produto</h3>
             <h3 className='text-center'>Quantidade</h3>
             <h3 className='text-center'>Preço</h3>
@@ -98,8 +102,8 @@ function Cart({ onClose, id_usuario }) {
             }
           </p>
           <div className='flex justify-end gap-2'>
-            <button className='px-2 text-xl text-white text-black hover:text-orange-400' onClick={onClose}>Fechar</button>
-            <button className='px-2 py-2 text-white font-bold bg-green-700 hover:opacity-80' onClick={finishOrder}>Finalizar pedido</button>
+            <button className='px-2 text-xl text-black text-white hover:text-orange-400' onClick={onClose}>Fechar</button>
+            <button className='px-2 py-2 font-bold text-white bg-green-700 hover:opacity-80' onClick={finishOrder}>Finalizar pedido</button>
           </div>
         </div>
       </div>

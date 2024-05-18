@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useGlobalContext } from './GlobalContext';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import plusPng from '../assets/plus.png';
@@ -7,7 +8,8 @@ import axios from 'axios';
 
 const MenuItem = ({ id_produto, title, description, price }) => {
   const [quantity, setQuantity] = useState(0);
-  const id_usuario = 1; //Mudar depois que fizer o login
+  const { userInfo } = useGlobalContext();
+  // const id_usuario = userinfo.sub;
   const addItem = () => {
     setQuantity(quantity + 1);
   };
@@ -21,13 +23,13 @@ const MenuItem = ({ id_produto, title, description, price }) => {
 
 
   const addCart = () => {
-    if (quantity > 0) {
+    if (userInfo && userInfo.sub && quantity > 0) {
       const data = {
         produtoId: id_produto,
         quantidade: quantity
       };
 
-      axios.post(`http://localhost:3000/addcart/${id_usuario}`, data)
+      axios.post(`http://localhost:3000/addcart/${userInfo.sub}`, data)
         .then(response => {
           console.log(response.data);
           setQuantity(0);
@@ -51,8 +53,12 @@ const MenuItem = ({ id_produto, title, description, price }) => {
             draggable: true
           });
         });
+    } else {
+      console.error('Usuário não autenticado ou quantidade inválida.');
+      console.log(userInfo)
     }
   };
+
 
 
 

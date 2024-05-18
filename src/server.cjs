@@ -109,6 +109,38 @@ app.post('/addcart/:id_usuario', async (req, res) => {
   }
 });
 
+app.get('/user/:id_usuario', async (req, res) => {
+  const client = await pool.connect();
+  try {
+    const { id_usuario } = req.params;
+    const query = "SELECT 1 FROM rapid_feast.usuario WHERE usuario_id = $1::text";
+    const result = await pool.query(query, [id_usuario]);
+
+    res.status(200).json(result.rows);
+  } catch (error) {
+    console.error('Erro ao buscar usuário: ', error);
+    res.status(500).json({ error: error.message });
+  } finally {
+    client.release();
+  }
+});
+
+app.post('/user', async (req, res) => {
+  const { id_usuario, nome_usuario, email } = req.body;
+  const client = await pool.connect();
+  try {
+    await client.query("INSERT INTO RAPID_FEAST.USUARIO (USUARIO_ID, NOME, EMAIL) VALUES ($1, $2, $3);", [id_usuario, nome_usuario, email]);
+    await client.query('COMMIT;');
+
+    res.status(200).send('Dados do usuário recebidos com sucesso!');
+  } catch (error) {
+    await client.query('ROLLBACK;');
+    res.status(500).send('Erro ao inserir usuário no banco: ', error);
+  } finally {
+    await client.release();
+  }
+});
+
 //Buscar itens do carrinho do usuário
 app.get('/cart/:id_usuario', async (req, res) => {
   try {
