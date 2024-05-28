@@ -2,6 +2,9 @@
 
 Para ambos os métodos de acessar, baixe o projeto.
 
+Instale as dependências com: 
+npm install
+
 ## Para rodar em ambiente de dev
 ### Execute os comandos abaixo no terminal
 node ./src/server.cjs
